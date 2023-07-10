@@ -1,0 +1,51 @@
+{
+  "applications": "*",
+  "changelogDate": "20230704120826",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "parkings",
+  "fields": [
+    {
+      "fieldName": "zoneTitle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "numeroParking",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "duree",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Parkings",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "users",
+      "relationshipName": "users",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "map",
+      "relationshipName": "map",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

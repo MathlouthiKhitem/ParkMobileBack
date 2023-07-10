@@ -1,0 +1,48 @@
+/**
+ * The Employee entity.
+ */
+entity Users {
+	/**
+	* The firstname attribute.
+	*/
+	firstName String,
+	lastName String,
+	email String,
+	phoneNumber String,
+	gender String,
+	dateOfBirth String,
+	matricule String,
+    password String
+}
+
+
+entity Parkings  {
+	zoneTitle String,
+	numeroParking String,
+	duree String,
+    price String,
+    startDate String,
+    endDate String,
+}
+
+entity Map {
+	 location String
+	zoneMap ZoneMap
+
+}
+
+
+enum ZoneMap {
+    Latitude, Longitude
+}
+
+relationship ManyToOne {
+  Parkings{Users} to Users
+}
+relationship ManyToOne {
+  Parkings{map} to Map
+}
+
+
+service all with serviceImpl except Map
+

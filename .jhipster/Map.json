@@ -1,0 +1,25 @@
+{
+  "applications": "*",
+  "changelogDate": "20230704120827",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "map",
+  "fields": [
+    {
+      "fieldName": "location",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "zoneMap",
+      "fieldType": "ZoneMap",
+      "fieldValues": "Latitude,Longitude"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Map",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}
