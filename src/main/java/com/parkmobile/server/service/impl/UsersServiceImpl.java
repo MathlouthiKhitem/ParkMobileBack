@@ -1,9 +1,7 @@
 package com.parkmobile.server.service.impl;
 
-import com.parkmobile.server.domain.User;
 import com.parkmobile.server.domain.Users;
 import com.parkmobile.server.repository.UsersRepository;
-import com.parkmobile.server.service.InvalidPasswordException;
 import com.parkmobile.server.service.UsersService;
 
 import java.util.ArrayList;
@@ -11,12 +9,8 @@ import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -70,11 +64,11 @@ public class UsersServiceImpl implements UsersService {
                 if (users.getDateOfBirth() != null) {
                     existingUsers.setDateOfBirth(users.getDateOfBirth());
                 }
-                if (users.getMatricule() != null) {
-                    existingUsers.setMatricule(users.getMatricule());
-                }
                 if (users.getPassword() != null) {
                     existingUsers.setPassword(users.getPassword());
+                }
+                if (users.getType() != null) {
+                    existingUsers.setType(users.getType());
                 }
 
                 return existingUsers;
@@ -99,10 +93,10 @@ public class UsersServiceImpl implements UsersService {
         log.debug("Request to delete Users : {}", id);
         usersRepository.deleteById(id);
     }
-    @Override
+
     public boolean verifyCredentials(String email, String password) {
-        List<User> users = usersRepository.findByEmail(email);
-        for (User user : users) {
+        List<Users> users = usersRepository.findByEmail(email);
+        for (Users user : users) {
             if (user.getPassword().equals(password)) {
                 return true;
             }
@@ -122,10 +116,10 @@ public class UsersServiceImpl implements UsersService {
 
     @ResponseBody
     public List<String> getUserIdsByEmail(String email) {
-        List<User> users = usersRepository.findByEmail(email);
+        List<Users> users = usersRepository.findByEmail(email);
         List<String> userIds = new ArrayList<>();
 
-        for (User user : users) {
+        for (Users user : users) {
             userIds.add(user.getId());
         }
 
@@ -177,4 +171,5 @@ public class UsersServiceImpl implements UsersService {
 //
 //        }
 //    }
+
 

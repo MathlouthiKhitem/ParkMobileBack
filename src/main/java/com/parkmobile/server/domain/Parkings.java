@@ -1,5 +1,6 @@
 package com.parkmobile.server.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -30,30 +31,17 @@ public class Parkings implements Serializable {
     @Field("price")
     private String price;
 
-    @Field("start_date")
-    private String startDate;
 
-    @Field("end_date")
-    private String endDate;
-
-    @DBRef
-    @Field("users")
-    private Users users;
 
     @DBRef
     @Field("map")
     private Map map;
-    @Field("matricule")
-    private String matricule;
 
-    // Getter and Setter for matricule
-    public String getMatricule() {
-        return matricule;
-    }
+    @DBRef
+    @Field("session")
+    @JsonIgnoreProperties(value = { "clients" }, allowSetters = true)
+    private Session session;
 
-    public void setMatricule(String matricule) {
-        this.matricule = matricule;
-    }
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public String getId() {
@@ -104,8 +92,9 @@ public class Parkings implements Serializable {
         return this;
     }
 
-    public void setDuree(String duree) {
+    public String setDuree(String duree) {
         this.duree = duree;
+        return duree;
     }
 
     public String getPrice() {
@@ -121,44 +110,7 @@ public class Parkings implements Serializable {
         this.price = price;
     }
 
-    public String getStartDate() {
-        return this.startDate;
-    }
 
-    public Parkings startDate(String startDate) {
-        this.setStartDate(startDate);
-        return this;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return this.endDate;
-    }
-
-    public Parkings endDate(String endDate) {
-        this.setEndDate(endDate);
-        return this;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
-    public Users getUsers() {
-        return this.users;
-    }
-
-    public void setUsers(Users users) {
-        this.users = users;
-    }
-
-    public Parkings users(Users users) {
-        this.setUsers(users);
-        return this;
-    }
 
     public Map getMap() {
         return this.map;
@@ -170,6 +122,19 @@ public class Parkings implements Serializable {
 
     public Parkings map(Map map) {
         this.setMap(map);
+        return this;
+    }
+
+    public Session getSession() {
+        return this.session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
+    public Parkings session(Session session) {
+        this.setSession(session);
         return this;
     }
 
@@ -201,8 +166,6 @@ public class Parkings implements Serializable {
             ", numeroParking='" + getNumeroParking() + "'" +
             ", duree='" + getDuree() + "'" +
             ", price='" + getPrice() + "'" +
-            ", startDate='" + getStartDate() + "'" +
-            ", endDate='" + getEndDate() + "'" +
             "}";
     }
 }

@@ -1,0 +1,15 @@
+{
+  "applications": "*",
+  "changelogDate": "20230710195407",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "agent",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Agent",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

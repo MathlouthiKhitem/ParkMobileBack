@@ -53,7 +53,4 @@ public interface UsersService {
      * @param id the id of the entity.
      */
     void delete(String id);
-
-     boolean verifyCredentials(String email, String password);
-    public void changePassword(String id , Users ChangePasswordRequest );
 }

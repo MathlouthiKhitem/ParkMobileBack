@@ -1,0 +1,15 @@
+{
+  "applications": "*",
+  "changelogDate": "20230710195408",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "admin",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Admin",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

@@ -38,12 +38,6 @@ class ParkingsResourceIT {
     private static final String DEFAULT_PRICE = "AAAAAAAAAA";
     private static final String UPDATED_PRICE = "BBBBBBBBBB";
 
-    private static final String DEFAULT_START_DATE = "AAAAAAAAAA";
-    private static final String UPDATED_START_DATE = "BBBBBBBBBB";
-
-    private static final String DEFAULT_END_DATE = "AAAAAAAAAA";
-    private static final String UPDATED_END_DATE = "BBBBBBBBBB";
-
     private static final String ENTITY_API_URL = "/api/parkings";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -66,9 +60,7 @@ class ParkingsResourceIT {
             .zoneTitle(DEFAULT_ZONE_TITLE)
             .numeroParking(DEFAULT_NUMERO_PARKING)
             .duree(DEFAULT_DUREE)
-            .price(DEFAULT_PRICE)
-            .startDate(DEFAULT_START_DATE)
-            .endDate(DEFAULT_END_DATE);
+            .price(DEFAULT_PRICE);
         return parkings;
     }
 
@@ -83,9 +75,7 @@ class ParkingsResourceIT {
             .zoneTitle(UPDATED_ZONE_TITLE)
             .numeroParking(UPDATED_NUMERO_PARKING)
             .duree(UPDATED_DUREE)
-            .price(UPDATED_PRICE)
-            .startDate(UPDATED_START_DATE)
-            .endDate(UPDATED_END_DATE);
+            .price(UPDATED_PRICE);
         return parkings;
     }
 
@@ -111,8 +101,6 @@ class ParkingsResourceIT {
         assertThat(testParkings.getNumeroParking()).isEqualTo(DEFAULT_NUMERO_PARKING);
         assertThat(testParkings.getDuree()).isEqualTo(DEFAULT_DUREE);
         assertThat(testParkings.getPrice()).isEqualTo(DEFAULT_PRICE);
-        assertThat(testParkings.getStartDate()).isEqualTo(DEFAULT_START_DATE);
-        assertThat(testParkings.getEndDate()).isEqualTo(DEFAULT_END_DATE);
     }
 
     @Test
@@ -146,9 +134,7 @@ class ParkingsResourceIT {
             .andExpect(jsonPath("$.[*].zoneTitle").value(hasItem(DEFAULT_ZONE_TITLE)))
             .andExpect(jsonPath("$.[*].numeroParking").value(hasItem(DEFAULT_NUMERO_PARKING)))
             .andExpect(jsonPath("$.[*].duree").value(hasItem(DEFAULT_DUREE)))
-            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE)))
-            .andExpect(jsonPath("$.[*].startDate").value(hasItem(DEFAULT_START_DATE)))
-            .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE)));
+            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE)));
     }
 
     @Test
@@ -165,9 +151,7 @@ class ParkingsResourceIT {
             .andExpect(jsonPath("$.zoneTitle").value(DEFAULT_ZONE_TITLE))
             .andExpect(jsonPath("$.numeroParking").value(DEFAULT_NUMERO_PARKING))
             .andExpect(jsonPath("$.duree").value(DEFAULT_DUREE))
-            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE))
-            .andExpect(jsonPath("$.startDate").value(DEFAULT_START_DATE))
-            .andExpect(jsonPath("$.endDate").value(DEFAULT_END_DATE));
+            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE));
     }
 
     @Test
@@ -185,13 +169,7 @@ class ParkingsResourceIT {
 
         // Update the parkings
         Parkings updatedParkings = parkingsRepository.findById(parkings.getId()).get();
-        updatedParkings
-            .zoneTitle(UPDATED_ZONE_TITLE)
-            .numeroParking(UPDATED_NUMERO_PARKING)
-            .duree(UPDATED_DUREE)
-            .price(UPDATED_PRICE)
-            .startDate(UPDATED_START_DATE)
-            .endDate(UPDATED_END_DATE);
+        updatedParkings.zoneTitle(UPDATED_ZONE_TITLE).numeroParking(UPDATED_NUMERO_PARKING).duree(UPDATED_DUREE).price(UPDATED_PRICE);
 
         restParkingsMockMvc
             .perform(
@@ -209,8 +187,6 @@ class ParkingsResourceIT {
         assertThat(testParkings.getNumeroParking()).isEqualTo(UPDATED_NUMERO_PARKING);
         assertThat(testParkings.getDuree()).isEqualTo(UPDATED_DUREE);
         assertThat(testParkings.getPrice()).isEqualTo(UPDATED_PRICE);
-        assertThat(testParkings.getStartDate()).isEqualTo(UPDATED_START_DATE);
-        assertThat(testParkings.getEndDate()).isEqualTo(UPDATED_END_DATE);
     }
 
     @Test
@@ -277,7 +253,7 @@ class ParkingsResourceIT {
         Parkings partialUpdatedParkings = new Parkings();
         partialUpdatedParkings.setId(parkings.getId());
 
-        partialUpdatedParkings.zoneTitle(UPDATED_ZONE_TITLE).startDate(UPDATED_START_DATE);
+        partialUpdatedParkings.zoneTitle(UPDATED_ZONE_TITLE);
 
         restParkingsMockMvc
             .perform(
@@ -295,8 +271,6 @@ class ParkingsResourceIT {
         assertThat(testParkings.getNumeroParking()).isEqualTo(DEFAULT_NUMERO_PARKING);
         assertThat(testParkings.getDuree()).isEqualTo(DEFAULT_DUREE);
         assertThat(testParkings.getPrice()).isEqualTo(DEFAULT_PRICE);
-        assertThat(testParkings.getStartDate()).isEqualTo(UPDATED_START_DATE);
-        assertThat(testParkings.getEndDate()).isEqualTo(DEFAULT_END_DATE);
     }
 
     @Test
@@ -314,9 +288,7 @@ class ParkingsResourceIT {
             .zoneTitle(UPDATED_ZONE_TITLE)
             .numeroParking(UPDATED_NUMERO_PARKING)
             .duree(UPDATED_DUREE)
-            .price(UPDATED_PRICE)
-            .startDate(UPDATED_START_DATE)
-            .endDate(UPDATED_END_DATE);
+            .price(UPDATED_PRICE);
 
         restParkingsMockMvc
             .perform(
@@ -334,8 +306,6 @@ class ParkingsResourceIT {
         assertThat(testParkings.getNumeroParking()).isEqualTo(UPDATED_NUMERO_PARKING);
         assertThat(testParkings.getDuree()).isEqualTo(UPDATED_DUREE);
         assertThat(testParkings.getPrice()).isEqualTo(UPDATED_PRICE);
-        assertThat(testParkings.getStartDate()).isEqualTo(UPDATED_START_DATE);
-        assertThat(testParkings.getEndDate()).isEqualTo(UPDATED_END_DATE);
     }
 
     @Test

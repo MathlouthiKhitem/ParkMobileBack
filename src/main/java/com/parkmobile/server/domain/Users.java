@@ -1,10 +1,9 @@
 package com.parkmobile.server.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.io.Serializable;
-
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -15,15 +14,12 @@ import org.springframework.data.mongodb.core.mapping.Field;
  */
 @Schema(description = "The Employee entity.")
 @Document(collection = "users")
-@NoArgsConstructor
-@AllArgsConstructor
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-
     private String id;
 
     /**
@@ -48,28 +44,41 @@ public class Users implements Serializable {
     @Field("date_of_birth")
     private String dateOfBirth;
 
+    @Field("password")
+    private String password;
+
+    @Field("type")
+    private Integer type;
+
+    @DBRef
+    @Field("client")
+    private Client client;
+
+    @DBRef
+    @Field("agent")
+    private Agent agent;
+
+    @DBRef
+    @Field("admin")
+    private Admin admin;
+
+    @DBRef
+    @Field("car")
+    private Car car;
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here
     @Field("matricule")
     private String matricule;
 
-    @Field("password")
-    private String password;
-    @DBRef
-    @Field("parking")
-    private Parkings parking;
+    // Getters and setters for other fields
 
-    // Rest of the class including getters and setters
-
-    public Parkings getParking() {
-        return parking;
+    public String getMatricule() {
+        return matricule;
     }
 
-    public void setParking(Parkings parking) {
-        this.parking = parking;
+    public void setMatricule(String matricule) {
+        this.matricule = matricule;
     }
-
-
-    // jhipster-needle-entity-add-field - JHipster will add fields here
-
     public String getId() {
         return this.id;
     }
@@ -161,19 +170,6 @@ public class Users implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getMatricule() {
-        return this.matricule;
-    }
-
-    public Users matricule(String matricule) {
-        this.setMatricule(matricule);
-        return this;
-    }
-
-    public void setMatricule(String matricule) {
-        this.matricule = matricule;
-    }
-
     public String getPassword() {
         return this.password;
     }
@@ -185,6 +181,71 @@ public class Users implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getType() {
+        return this.type;
+    }
+
+    public Users type(Integer type) {
+        this.setType(type);
+        return this;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Client getClient() {
+        return this.client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Users client(Client client) {
+        this.setClient(client);
+        return this;
+    }
+
+    public Agent getAgent() {
+        return this.agent;
+    }
+
+    public void setAgent(Agent agent) {
+        this.agent = agent;
+    }
+
+    public Users agent(Agent agent) {
+        this.setAgent(agent);
+        return this;
+    }
+
+    public Admin getAdmin() {
+        return this.admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    public Users admin(Admin admin) {
+        this.setAdmin(admin);
+        return this;
+    }
+
+    public Car getCar() {
+        return this.car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public Users car(Car car) {
+        this.setCar(car);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
@@ -206,7 +267,6 @@ public class Users implements Serializable {
         return getClass().hashCode();
     }
 
-
     // prettier-ignore
     @Override
     public String toString() {
@@ -218,8 +278,8 @@ public class Users implements Serializable {
             ", phoneNumber='" + getPhoneNumber() + "'" +
             ", gender='" + getGender() + "'" +
             ", dateOfBirth='" + getDateOfBirth() + "'" +
-            ", matricule='" + getMatricule() + "'" +
             ", password='" + getPassword() + "'" +
+            ", type=" + getType() +
             "}";
     }
 }

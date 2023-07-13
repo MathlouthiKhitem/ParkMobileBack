@@ -20,14 +20,6 @@
     {
       "fieldName": "price",
       "fieldType": "String"
-    },
-    {
-      "fieldName": "startDate",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "endDate",
-      "fieldType": "String"
     }
   ],
   "fluentMethods": true,
@@ -44,6 +36,11 @@
     {
       "otherEntityName": "map",
       "relationshipName": "map",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "session",
+      "relationshipName": "session",
       "relationshipType": "many-to-one"
     }
   ],

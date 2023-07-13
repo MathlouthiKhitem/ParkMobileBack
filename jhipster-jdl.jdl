@@ -5,24 +5,22 @@ entity Users {
 	/**
 	* The firstname attribute.
 	*/
-	firstName String,
-	lastName String,
-	email String,
-	phoneNumber String,
-	gender String,
-	dateOfBirth String,
-	matricule String,
-    password String
+    firstName String,
+    lastName String,
+    email String,
+    phoneNumber String,
+    gender String,
+    dateOfBirth String,
+    password String,
+    type Integer
 }
 
 
 entity Parkings  {
-	zoneTitle String,
-	numeroParking String,
-	duree String,
-    price String,
-    startDate String,
-    endDate String,
+    zoneTitle String,
+    numeroParking String,
+    duree String,
+    price String
 }
 
 entity Map {
@@ -31,18 +29,51 @@ entity Map {
 
 }
 
+entity Client {
+}
 
+entity Agent {
+}
+
+entity Admin {
+}
+entity Car {
+    matricule String
+}
 enum ZoneMap {
     Latitude, Longitude
 }
-
-relationship ManyToOne {
-  Parkings{Users} to Users
+entity Session {
+    startTime Instant,
+    endTime Instant,
+    location String,
+    status Boolean
 }
+
 relationship ManyToOne {
   Parkings{map} to Map
 }
 
+relationship ManyToOne {
+    Parkings{map} to Map
+}
 
+relationship ManyToMany {
+    Client{session} to Session{client}
+}
+
+relationship ManyToMany {
+    Parkings{session} to Session
+}
+
+relationship ManyToOne {
+    Users{car} to Car
+}
+
+relationship OneToOne {
+    Users{client} to Client
+    Users{agent} to Agent
+    Users{admin} to Admin
+}
 service all with serviceImpl except Map
 

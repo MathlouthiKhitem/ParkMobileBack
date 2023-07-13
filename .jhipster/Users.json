@@ -31,12 +31,12 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "matricule",
+      "fieldName": "password",
       "fieldType": "String"
     },
     {
-      "fieldName": "password",
-      "fieldType": "String"
+      "fieldName": "type",
+      "fieldType": "Integer"
     }
   ],
   "fluentMethods": true,
@@ -45,6 +45,30 @@
   "name": "Users",
   "pagination": "no",
   "readOnly": false,
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "client",
+      "ownerSide": true,
+      "relationshipName": "client",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "agent",
+      "ownerSide": true,
+      "relationshipName": "agent",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "admin",
+      "ownerSide": true,
+      "relationshipName": "admin",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "car",
+      "relationshipName": "car",
+      "relationshipType": "many-to-one"
+    }
+  ],
   "service": "serviceImpl"
 }

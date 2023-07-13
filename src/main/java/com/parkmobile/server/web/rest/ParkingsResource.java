@@ -166,4 +166,6 @@ public class ParkingsResource {
         parkingsService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id)).build();
     }
+
+
 }

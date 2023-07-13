@@ -44,11 +44,11 @@ class UsersResourceIT {
     private static final String DEFAULT_DATE_OF_BIRTH = "AAAAAAAAAA";
     private static final String UPDATED_DATE_OF_BIRTH = "BBBBBBBBBB";
 
-    private static final String DEFAULT_MATRICULE = "AAAAAAAAAA";
-    private static final String UPDATED_MATRICULE = "BBBBBBBBBB";
-
     private static final String DEFAULT_PASSWORD = "AAAAAAAAAA";
     private static final String UPDATED_PASSWORD = "BBBBBBBBBB";
+
+    private static final Integer DEFAULT_TYPE = 1;
+    private static final Integer UPDATED_TYPE = 2;
 
     private static final String ENTITY_API_URL = "/api/users";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -75,8 +75,8 @@ class UsersResourceIT {
             .phoneNumber(DEFAULT_PHONE_NUMBER)
             .gender(DEFAULT_GENDER)
             .dateOfBirth(DEFAULT_DATE_OF_BIRTH)
-            .matricule(DEFAULT_MATRICULE)
-            .password(DEFAULT_PASSWORD);
+            .password(DEFAULT_PASSWORD)
+            .type(DEFAULT_TYPE);
         return users;
     }
 
@@ -94,8 +94,8 @@ class UsersResourceIT {
             .phoneNumber(UPDATED_PHONE_NUMBER)
             .gender(UPDATED_GENDER)
             .dateOfBirth(UPDATED_DATE_OF_BIRTH)
-            .matricule(UPDATED_MATRICULE)
-            .password(UPDATED_PASSWORD);
+            .password(UPDATED_PASSWORD)
+            .type(UPDATED_TYPE);
         return users;
     }
 
@@ -123,8 +123,8 @@ class UsersResourceIT {
         assertThat(testUsers.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
         assertThat(testUsers.getGender()).isEqualTo(DEFAULT_GENDER);
         assertThat(testUsers.getDateOfBirth()).isEqualTo(DEFAULT_DATE_OF_BIRTH);
-        assertThat(testUsers.getMatricule()).isEqualTo(DEFAULT_MATRICULE);
         assertThat(testUsers.getPassword()).isEqualTo(DEFAULT_PASSWORD);
+        assertThat(testUsers.getType()).isEqualTo(DEFAULT_TYPE);
     }
 
     @Test
@@ -161,8 +161,8 @@ class UsersResourceIT {
             .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER)))
             .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER)))
             .andExpect(jsonPath("$.[*].dateOfBirth").value(hasItem(DEFAULT_DATE_OF_BIRTH)))
-            .andExpect(jsonPath("$.[*].matricule").value(hasItem(DEFAULT_MATRICULE)))
-            .andExpect(jsonPath("$.[*].password").value(hasItem(DEFAULT_PASSWORD)));
+            .andExpect(jsonPath("$.[*].password").value(hasItem(DEFAULT_PASSWORD)))
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE)));
     }
 
     @Test
@@ -182,8 +182,8 @@ class UsersResourceIT {
             .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER))
             .andExpect(jsonPath("$.gender").value(DEFAULT_GENDER))
             .andExpect(jsonPath("$.dateOfBirth").value(DEFAULT_DATE_OF_BIRTH))
-            .andExpect(jsonPath("$.matricule").value(DEFAULT_MATRICULE))
-            .andExpect(jsonPath("$.password").value(DEFAULT_PASSWORD));
+            .andExpect(jsonPath("$.password").value(DEFAULT_PASSWORD))
+            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE));
     }
 
     @Test
@@ -208,8 +208,8 @@ class UsersResourceIT {
             .phoneNumber(UPDATED_PHONE_NUMBER)
             .gender(UPDATED_GENDER)
             .dateOfBirth(UPDATED_DATE_OF_BIRTH)
-            .matricule(UPDATED_MATRICULE)
-            .password(UPDATED_PASSWORD);
+            .password(UPDATED_PASSWORD)
+            .type(UPDATED_TYPE);
 
         restUsersMockMvc
             .perform(
@@ -229,8 +229,8 @@ class UsersResourceIT {
         assertThat(testUsers.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
         assertThat(testUsers.getGender()).isEqualTo(UPDATED_GENDER);
         assertThat(testUsers.getDateOfBirth()).isEqualTo(UPDATED_DATE_OF_BIRTH);
-        assertThat(testUsers.getMatricule()).isEqualTo(UPDATED_MATRICULE);
         assertThat(testUsers.getPassword()).isEqualTo(UPDATED_PASSWORD);
+        assertThat(testUsers.getType()).isEqualTo(UPDATED_TYPE);
     }
 
     @Test
@@ -301,8 +301,8 @@ class UsersResourceIT {
             .lastName(UPDATED_LAST_NAME)
             .phoneNumber(UPDATED_PHONE_NUMBER)
             .dateOfBirth(UPDATED_DATE_OF_BIRTH)
-            .matricule(UPDATED_MATRICULE)
-            .password(UPDATED_PASSWORD);
+            .password(UPDATED_PASSWORD)
+            .type(UPDATED_TYPE);
 
         restUsersMockMvc
             .perform(
@@ -322,8 +322,8 @@ class UsersResourceIT {
         assertThat(testUsers.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
         assertThat(testUsers.getGender()).isEqualTo(DEFAULT_GENDER);
         assertThat(testUsers.getDateOfBirth()).isEqualTo(UPDATED_DATE_OF_BIRTH);
-        assertThat(testUsers.getMatricule()).isEqualTo(UPDATED_MATRICULE);
         assertThat(testUsers.getPassword()).isEqualTo(UPDATED_PASSWORD);
+        assertThat(testUsers.getType()).isEqualTo(UPDATED_TYPE);
     }
 
     @Test
@@ -344,8 +344,8 @@ class UsersResourceIT {
             .phoneNumber(UPDATED_PHONE_NUMBER)
             .gender(UPDATED_GENDER)
             .dateOfBirth(UPDATED_DATE_OF_BIRTH)
-            .matricule(UPDATED_MATRICULE)
-            .password(UPDATED_PASSWORD);
+            .password(UPDATED_PASSWORD)
+            .type(UPDATED_TYPE);
 
         restUsersMockMvc
             .perform(
@@ -365,8 +365,8 @@ class UsersResourceIT {
         assertThat(testUsers.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
         assertThat(testUsers.getGender()).isEqualTo(UPDATED_GENDER);
         assertThat(testUsers.getDateOfBirth()).isEqualTo(UPDATED_DATE_OF_BIRTH);
-        assertThat(testUsers.getMatricule()).isEqualTo(UPDATED_MATRICULE);
         assertThat(testUsers.getPassword()).isEqualTo(UPDATED_PASSWORD);
+        assertThat(testUsers.getType()).isEqualTo(UPDATED_TYPE);
     }
 
     @Test

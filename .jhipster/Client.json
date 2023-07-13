@@ -1,0 +1,23 @@
+{
+  "applications": "*",
+  "changelogDate": "20230710195406",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "client",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Client",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "session",
+      "otherEntityRelationshipName": "client",
+      "ownerSide": true,
+      "relationshipName": "session",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

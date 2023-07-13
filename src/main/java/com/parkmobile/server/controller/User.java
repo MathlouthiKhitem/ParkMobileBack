@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -52,9 +53,12 @@ public class User {
 
     @PostMapping("/adduser")
     public Users signup(@RequestBody Users es) throws URISyntaxException {
-        log.debug("REST request to save Users : {}", es);
+        log.debug("REST request to save Users: {}", es);
+
         ResponseEntity<Users> response = iServContrat.createUsers(es);
-        return response.getBody();
+        Users savedUsers = response.getBody();
+
+        return savedUsers;
     }
 
     @PutMapping("/update/{id}")
@@ -128,15 +132,16 @@ public class User {
     public ResponseEntity<String> getUserProfile(@PathVariable("id") String userId){
         return  isServUsers.getUserProfile(userId);
     }
-//    @PostMapping("/{id}/parkings")
-//
-//    public void addParkingToUser(
-//        @RequestBody  String userId, @RequestBody Parkings parking) {
-//        IservParkingsService.addParkingToUser(userId,parking);
-//    }
-@PostMapping("/{userId}/parkings")
-public ResponseEntity<String> addParkingToUser(@PathVariable("userId") String userId, @RequestBody Parkings parking){
-    return   IservParkingsService.addParkingToUser(userId,parking);
-}
+    @PostMapping("/add-parking-session")
+    public ResponseEntity<Parkings> addParkingWithStartedSession(@RequestBody Map<String, String> request) throws URISyntaxException {
+        return iServContrat.addParkingWithStartedSession(request);
+    }
 
-}
+    @GetMapping("/{clientId}/parkings")
+    public List<Parkings> findParkingsForClient(@PathVariable String clientId) {
+        return iServContrat.findParkingsForClient(clientId);
+    }
+    }
+
+
+
